@@ -1,0 +1,14 @@
+{
+  "modelVersion": "6.0.2",
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@lyb/media-preview": "^1.0.5"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
+}
