@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/MovieDetail",
     "pages/Album",
-    "pages/About"
+    "pages/About",
+    "pages/Ranking"
   ]
 }
