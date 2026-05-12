@@ -75,6 +75,10 @@ export interface Movie {
   realtime_hot_honor_infos:       HonorInfo[];
   null_rating_reason:             string;
   interest_cmt_earlier_tip_desc:  string;
+  freePlatforms?:                 string[];
+  boxOffice?:                     number; // 票房，单位：万元
+  liked?:                         boolean; // 是否已点赞
+  likeCount?:                     number; // 点赞数
 }
 
 export interface Ctor {

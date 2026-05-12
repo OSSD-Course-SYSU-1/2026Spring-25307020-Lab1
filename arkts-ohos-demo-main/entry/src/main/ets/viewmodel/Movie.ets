@@ -75,6 +75,10 @@ export class Movie {
   realtime_hot_honor_infos: RealtimeHotHonorInfo[] = [];
   null_rating_reason: string = '';
   interest_cmt_earlier_tip_desc: string = '';
+  freePlatforms: string[] = [];
+  boxOffice: number = 0; // 票房，单位：万元
+  liked: boolean = false; // 是否已点赞
+  likeCount: number = 0; // 点赞数
 
   constructor() {}
 }

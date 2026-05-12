@@ -77,6 +77,10 @@ export interface SubjectCollectionItem {
   directors: string[]
   reviewer_name: string
   null_rating_reason: string
+  freePlatforms?: string[]
+  boxOffice?: number // 票房，单位：万元
+  liked?: boolean // 是否已点赞
+  likeCount?: number // 点赞数
 }
 
 export interface Rating {
