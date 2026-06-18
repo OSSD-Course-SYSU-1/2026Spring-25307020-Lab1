@@ -1,0 +1,56 @@
+{
+	"app":	{
+		"bundleName":	"com.focal.study",
+		"vendor":	"focal",
+		"versionCode":	1000000,
+		"versionName":	"7.0.0",
+		"icon":	"$media:app_icon",
+		"label":	"$string:app_name",
+		"apiReleaseType":	"Release",
+		"compileSdkVersion":	"6.0.2.130",
+		"targetAPIVersion":	60001021,
+		"minAPIVersion":	60001021,
+		"compileSdkType":	"HarmonyOS",
+		"targetMinorAPIVersion":	0,
+		"targetPatchAPIVersion":	0,
+		"appEnvironments":	[],
+		"bundleType":	"app",
+		"buildMode":	"debug",
+		"debug":	true,
+		"iconId":	16777217,
+		"labelId":	16777216
+	},
+	"module":	{
+		"name":	"entry",
+		"type":	"entry",
+		"description":	"Focal Study System ArkTS Edition",
+		"mainElement":	"EntryAbility",
+		"deviceTypes":	["phone", "tablet"],
+		"deliveryWithInstall":	true,
+		"pages":	"$profile:main_pages",
+		"abilities":	[{
+				"name":	"EntryAbility",
+				"srcEntry":	"./ets/entryability/EntryAbility.ets",
+				"description":	"Focal Entry Ability",
+				"label":	"$string:EntryAbility_label",
+				"startWindowIcon":	"$media:app_icon",
+				"startWindowBackground":	"$color:start_window_background",
+				"exported":	true,
+				"skills":	[{
+						"entities":	["entity.system.home"],
+						"actions":	["action.system.home"]
+					}],
+				"labelId":	16777218,
+				"startWindowIconId":	16777217,
+				"startWindowBackgroundId":	16777219
+			}],
+		"requestPermissions":	[{
+				"name":	"ohos.permission.INTERNET"
+			}],
+		"packageName":	"entry",
+		"installationFree":	false,
+		"virtualMachine":	"ark13.0.1.0",
+		"compileMode":	"esmodule",
+		"dependencies":	[]
+	}
+}
