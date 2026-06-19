@@ -4,6 +4,7 @@ import { StorageService } from '../services/StorageService'
 import { DateUtil } from '../utils/DateUtil'
 import { Constants, ColorDef } from '../utils/Constants'
 import { UIDUtil } from '../utils/UIDUtil'
+import { BreakpointSystem, BreakpointType } from '../utils/BreakpointSystem'
 
 @Entry
 @Component
@@ -14,14 +15,24 @@ struct HomePage {
   @State newSubjectName: string = ''
   @State newSubjectDate: string = ''
   @State showAddDialog: boolean = false
+  @State currentBreakpoint: BreakpointType = BreakpointType.SM
 
   aboutToAppear() {
     try {
       this.isDarkMode = StorageService.loadString('theme', 'light') === 'dark'
       this.loadSubjects()
+      
+      // 设置接续状态
+      AppStorage.setOrCreate('continueTab', 'home')
     } catch (e) {
       console.error('HomePage init error:', e)
     }
+  }
+
+  // 响应式布局更新
+  updateBreakpoint(width: number): void {
+    BreakpointSystem.updateWidth(width)
+    this.currentBreakpoint = BreakpointSystem.getBreakpoint()
   }
 
   loadSubjects(): void {
@@ -92,12 +103,61 @@ struct HomePage {
     return this.isDarkMode ? 'rgba(20,20,20,0.7)' : 'rgba(255,255,255,0.5)'
   }
 
+  // 响应式获取网格列数
+  getGridColumns(): string {
+    switch (this.currentBreakpoint) {
+      case BreakpointType.SM:
+        return '1fr 1fr'
+      case BreakpointType.MD:
+        return '1fr 1fr 1fr'
+      case BreakpointType.LG:
+        return '1fr 1fr 1fr 1fr'
+      default:
+        return '1fr 1fr'
+    }
+  }
+
+  // 响应式获取标题字体大小
+  getTitleSize(): number {
+    switch (this.currentBreakpoint) {
+      case BreakpointType.SM:
+        return 30
+      case BreakpointType.MD:
+        return 36
+      case BreakpointType.LG:
+        return 42
+      default:
+        return 30
+    }
+  }
+
+  // 响应式获取内边距
+  getPaddingValue(): number {
+    switch (this.currentBreakpoint) {
+      case BreakpointType.SM:
+        return 16
+      case BreakpointType.MD:
+        return 24
+      case BreakpointType.LG:
+        return 32
+      default:
+        return 16
+    }
+  }
+
   build() {
     Column() {
       // Topbar
       Row() {
         Text('Focal').fontSize(18).fontColor(this.getInkColor())
         Blank()
+        
+        // 设备类型指示器（调试用）
+        Text(`[${this.currentBreakpoint}]`)
+          .fontSize(10)
+          .fontColor(this.getInkDimColor())
+          .margin({ right: 12 })
+        
         Button(this.isDarkMode ? 'LIGHT' : 'DARK')
           .fontSize(10)
           .fontColor(this.getInkDimColor())
@@ -109,11 +169,11 @@ struct HomePage {
 
       // Title
       Text('Focal Study System')
-        .fontSize(30)
+        .fontSize(this.getTitleSize())
         .fontColor(this.getKleinColor())
         .margin({ top: 20 })
 
-      Text('v7.0 - ArkTS Edition')
+      Text('v7.0 - ArkTS Edition | 自由流转 & 响应式布局')
         .fontSize(14)
         .fontColor(this.getInkDimColor())
         .margin({ top: 8 })
@@ -125,37 +185,67 @@ struct HomePage {
         .backgroundColor(this.getKleinColor())
         .onClick(() => this.showAddDialog = true)
 
-      // Subject List
-      Column() {
-        if (this.subjects.length === 0) {
-          Text('No subjects yet').fontSize(14).fontColor(this.getInkDimColor()).margin({ top: 20 })
-        } else {
+      // Subject Grid (响应式网格)
+      Scroll() {
+        Grid() {
           ForEach(this.subjects, (s: Subject, index: number) => {
-            Row() {
-              Text('').width(12).height(12).borderRadius(6).backgroundColor(s.color).margin({ right: 12 })
-              Text(s.name).fontSize(14).fontColor(this.getInkColor()).layoutWeight(1)
-              Button('Delete')
-                .fontSize(10)
-                .fontColor('#b03030')
-                .backgroundColor(Color.Transparent)
-                .onClick(() => this.deleteSubject(s.id))
-            }
-            .width('100%')
-            .padding(12)
-            .backgroundColor(this.getSurfaceColor())
-            .margin({ top: 8 })
-            .onClick(() => {
-              router.pushUrl({
-                url: 'pages/SubjectPage',
-                params: { subjectId: s.id }
+            GridItem() {
+              Column() {
+                // 颜色指示器
+                Text('')
+                  .width(32)
+                  .height(32)
+                  .borderRadius(16)
+                  .backgroundColor(s.color)
+                  .margin({ bottom: 12 })
+
+                // 科目名称
+                Text(s.name)
+                  .fontSize(16)
+                  .fontColor(this.getInkColor())
+                  .maxLines(2)
+                  .textOverflow({ overflow: TextOverflow.Ellipsis })
+
+                // 考试日期
+                if (s.examDate) {
+                  Text(s.examDate)
+                    .fontSize(12)
+                    .fontColor(this.getInkDimColor())
+                    .margin({ top: 4 })
+                }
+
+                // 删除按钮
+                Button('Delete')
+                  .fontSize(10)
+                  .fontColor('#b03030')
+                  .backgroundColor(Color.Transparent)
+                  .margin({ top: 8 })
+                  .onClick(() => this.deleteSubject(s.id))
+              }
+              .width('100%')
+              .padding(16)
+              .backgroundColor(this.getSurfaceColor())
+              .borderRadius(12)
+              .onClick(() => {
+                // 保存接续状态
+                AppStorage.setOrCreate('continueSubjectId', s.id)
+                router.pushUrl({
+                  url: 'pages/SubjectPage',
+                  params: { subjectId: s.id }
+                })
               })
-            })
+            }
           }, (s: Subject) => s.id)
         }
+        .columnsTemplate(this.getGridColumns())
+        .columnsGap(16)
+        .rowsGap(16)
+        .width('100%')
+        .padding(this.getPaddingValue())
       }
       .width('100%')
-      .padding(24)
       .layoutWeight(1)
+      .scrollBar(BarState.Off)
 
       // Add Dialog
       if (this.showAddDialog) {
@@ -211,5 +301,12 @@ struct HomePage {
     .width('100%')
     .height('100%')
     .backgroundColor(this.getBgColor())
+    .onAreaChange((oldValue: Area, newValue: Area) => {
+      // 响应式布局：监听区域变化
+      const width = newValue.width as number
+      if (width) {
+        this.updateBreakpoint(width)
+      }
+    })
   }
 }

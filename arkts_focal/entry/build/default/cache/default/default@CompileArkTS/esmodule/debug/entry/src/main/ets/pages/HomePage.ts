@@ -8,6 +8,7 @@ interface HomePage_Params {
     newSubjectName?: string;
     newSubjectDate?: string;
     showAddDialog?: boolean;
+    currentBreakpoint?: BreakpointType;
 }
 import router from "@ohos:router";
 import { Subject } from "@bundle:com.focal.study/entry/ets/models/Subject";
@@ -16,6 +17,7 @@ import { DateUtil } from "@bundle:com.focal.study/entry/ets/utils/DateUtil";
 import { Constants } from "@bundle:com.focal.study/entry/ets/utils/Constants";
 import type { ColorDef } from "@bundle:com.focal.study/entry/ets/utils/Constants";
 import { UIDUtil } from "@bundle:com.focal.study/entry/ets/utils/UIDUtil";
+import { BreakpointSystem, BreakpointType } from "@bundle:com.focal.study/entry/ets/utils/BreakpointSystem";
 class HomePage extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
         super(parent, __localStorage, elmtId, extraInfo);
@@ -28,6 +30,7 @@ class HomePage extends ViewPU {
         this.__newSubjectName = new ObservedPropertySimplePU('', this, "newSubjectName");
         this.__newSubjectDate = new ObservedPropertySimplePU('', this, "newSubjectDate");
         this.__showAddDialog = new ObservedPropertySimplePU(false, this, "showAddDialog");
+        this.__currentBreakpoint = new ObservedPropertySimplePU(BreakpointType.SM, this, "currentBreakpoint");
         this.setInitiallyProvidedValue(params);
         this.finalizeConstruction();
     }
@@ -50,6 +53,9 @@ class HomePage extends ViewPU {
         if (params.showAddDialog !== undefined) {
             this.showAddDialog = params.showAddDialog;
         }
+        if (params.currentBreakpoint !== undefined) {
+            this.currentBreakpoint = params.currentBreakpoint;
+        }
     }
     updateStateVars(params: HomePage_Params) {
     }
@@ -60,6 +66,7 @@ class HomePage extends ViewPU {
         this.__newSubjectName.purgeDependencyOnElmtId(rmElmtId);
         this.__newSubjectDate.purgeDependencyOnElmtId(rmElmtId);
         this.__showAddDialog.purgeDependencyOnElmtId(rmElmtId);
+        this.__currentBreakpoint.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
         this.__subjects.aboutToBeDeleted();
@@ -68,6 +75,7 @@ class HomePage extends ViewPU {
         this.__newSubjectName.aboutToBeDeleted();
         this.__newSubjectDate.aboutToBeDeleted();
         this.__showAddDialog.aboutToBeDeleted();
+        this.__currentBreakpoint.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
@@ -113,14 +121,28 @@ class HomePage extends ViewPU {
     set showAddDialog(newValue: boolean) {
         this.__showAddDialog.set(newValue);
     }
+    private __currentBreakpoint: ObservedPropertySimplePU<BreakpointType>;
+    get currentBreakpoint() {
+        return this.__currentBreakpoint.get();
+    }
+    set currentBreakpoint(newValue: BreakpointType) {
+        this.__currentBreakpoint.set(newValue);
+    }
     aboutToAppear() {
         try {
             this.isDarkMode = StorageService.loadString('theme', 'light') === 'dark';
             this.loadSubjects();
+            // 设置接续状态
+            AppStorage.setOrCreate('continueTab', 'home');
         }
         catch (e) {
             console.error('HomePage init error:', e);
         }
+    }
+    // 响应式布局更新
+    updateBreakpoint(width: number): void {
+        BreakpointSystem.updateWidth(width);
+        this.currentBreakpoint = BreakpointSystem.getBreakpoint();
     }
     loadSubjects(): void {
         try {
@@ -178,12 +200,58 @@ class HomePage extends ViewPU {
     getSurfaceColor(): ResourceColor {
         return this.isDarkMode ? 'rgba(20,20,20,0.7)' : 'rgba(255,255,255,0.5)';
     }
+    // 响应式获取网格列数
+    getGridColumns(): string {
+        switch (this.currentBreakpoint) {
+            case BreakpointType.SM:
+                return '1fr 1fr';
+            case BreakpointType.MD:
+                return '1fr 1fr 1fr';
+            case BreakpointType.LG:
+                return '1fr 1fr 1fr 1fr';
+            default:
+                return '1fr 1fr';
+        }
+    }
+    // 响应式获取标题字体大小
+    getTitleSize(): number {
+        switch (this.currentBreakpoint) {
+            case BreakpointType.SM:
+                return 30;
+            case BreakpointType.MD:
+                return 36;
+            case BreakpointType.LG:
+                return 42;
+            default:
+                return 30;
+        }
+    }
+    // 响应式获取内边距
+    getPaddingValue(): number {
+        switch (this.currentBreakpoint) {
+            case BreakpointType.SM:
+                return 16;
+            case BreakpointType.MD:
+                return 24;
+            case BreakpointType.LG:
+                return 32;
+            default:
+                return 16;
+        }
+    }
     initialRender() {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
             Column.width('100%');
             Column.height('100%');
             Column.backgroundColor(this.getBgColor());
+            Column.onAreaChange((oldValue: Area, newValue: Area) => {
+                // 响应式布局：监听区域变化
+                const width = newValue.width as number;
+                if (width) {
+                    this.updateBreakpoint(width);
+                }
+            });
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             // Topbar
@@ -204,6 +272,18 @@ class HomePage extends ViewPU {
         }, Blank);
         Blank.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
+            // 设备类型指示器（调试用）
+            Text.create(`[${this.currentBreakpoint}]`);
+            // 设备类型指示器（调试用）
+            Text.fontSize(10);
+            // 设备类型指示器（调试用）
+            Text.fontColor(this.getInkDimColor());
+            // 设备类型指示器（调试用）
+            Text.margin({ right: 12 });
+        }, Text);
+        // 设备类型指示器（调试用）
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
             Button.createWithLabel(this.isDarkMode ? 'LIGHT' : 'DARK');
             Button.fontSize(10);
             Button.fontColor(this.getInkDimColor());
@@ -217,7 +297,7 @@ class HomePage extends ViewPU {
             // Title
             Text.create('Focal Study System');
             // Title
-            Text.fontSize(30);
+            Text.fontSize(this.getTitleSize());
             // Title
             Text.fontColor(this.getKleinColor());
             // Title
@@ -226,7 +306,7 @@ class HomePage extends ViewPU {
         // Title
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            Text.create('v7.0 - ArkTS Edition');
+            Text.create('v7.0 - ArkTS Edition | 自由流转 & 响应式布局');
             Text.fontSize(14);
             Text.fontColor(this.getInkDimColor());
             Text.margin({ top: 8 });
@@ -247,82 +327,127 @@ class HomePage extends ViewPU {
         // Add Button
         Button.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            // Subject List
-            Column.create();
-            // Subject List
-            Column.width('100%');
-            // Subject List
-            Column.padding(24);
-            // Subject List
-            Column.layoutWeight(1);
-        }, Column);
+            // Subject Grid (响应式网格)
+            Scroll.create();
+            // Subject Grid (响应式网格)
+            Scroll.width('100%');
+            // Subject Grid (响应式网格)
+            Scroll.layoutWeight(1);
+            // Subject Grid (响应式网格)
+            Scroll.scrollBar(BarState.Off);
+        }, Scroll);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            If.create();
-            if (this.subjects.length === 0) {
-                this.ifElseBranchUpdateFunction(0, () => {
-                    this.observeComponentCreation2((elmtId, isInitialRender) => {
-                        Text.create('No subjects yet');
-                        Text.fontSize(14);
-                        Text.fontColor(this.getInkDimColor());
-                        Text.margin({ top: 20 });
-                    }, Text);
-                    Text.pop();
-                });
-            }
-            else {
-                this.ifElseBranchUpdateFunction(1, () => {
-                    this.observeComponentCreation2((elmtId, isInitialRender) => {
-                        ForEach.create();
-                        const forEachItemGenFunction = (_item, index: number) => {
-                            const s = _item;
-                            this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                Row.create();
-                                Row.width('100%');
-                                Row.padding(12);
-                                Row.backgroundColor(this.getSurfaceColor());
-                                Row.margin({ top: 8 });
-                                Row.onClick(() => {
-                                    router.pushUrl({
-                                        url: 'pages/SubjectPage',
-                                        params: { subjectId: s.id }
-                                    });
+            Grid.create();
+            Grid.columnsTemplate(this.getGridColumns());
+            Grid.columnsGap(16);
+            Grid.rowsGap(16);
+            Grid.width('100%');
+            Grid.padding(this.getPaddingValue());
+        }, Grid);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            ForEach.create();
+            const forEachItemGenFunction = (_item, index: number) => {
+                const s = _item;
+                {
+                    const itemCreation2 = (elmtId, isInitialRender) => {
+                        GridItem.create(() => { }, false);
+                    };
+                    const observedDeepRender = () => {
+                        this.observeComponentCreation2(itemCreation2, GridItem);
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            Column.create();
+                            Column.width('100%');
+                            Column.padding(16);
+                            Column.backgroundColor(this.getSurfaceColor());
+                            Column.borderRadius(12);
+                            Column.onClick(() => {
+                                // 保存接续状态
+                                AppStorage.setOrCreate('continueSubjectId', s.id);
+                                router.pushUrl({
+                                    url: 'pages/SubjectPage',
+                                    params: { subjectId: s.id }
                                 });
-                            }, Row);
-                            this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                Text.create('');
-                                Text.width(12);
-                                Text.height(12);
-                                Text.borderRadius(6);
-                                Text.backgroundColor(s.color);
-                                Text.margin({ right: 12 });
-                            }, Text);
-                            Text.pop();
-                            this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                Text.create(s.name);
-                                Text.fontSize(14);
-                                Text.fontColor(this.getInkColor());
-                                Text.layoutWeight(1);
-                            }, Text);
-                            Text.pop();
-                            this.observeComponentCreation2((elmtId, isInitialRender) => {
-                                Button.createWithLabel('Delete');
-                                Button.fontSize(10);
-                                Button.fontColor('#b03030');
-                                Button.backgroundColor(Color.Transparent);
-                                Button.onClick(() => this.deleteSubject(s.id));
-                            }, Button);
-                            Button.pop();
-                            Row.pop();
-                        };
-                        this.forEachUpdateFunction(elmtId, this.subjects, forEachItemGenFunction, (s: Subject) => s.id, true, false);
-                    }, ForEach);
-                    ForEach.pop();
-                });
-            }
-        }, If);
-        If.pop();
-        // Subject List
-        Column.pop();
+                            });
+                        }, Column);
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            // 颜色指示器
+                            Text.create('');
+                            // 颜色指示器
+                            Text.width(32);
+                            // 颜色指示器
+                            Text.height(32);
+                            // 颜色指示器
+                            Text.borderRadius(16);
+                            // 颜色指示器
+                            Text.backgroundColor(s.color);
+                            // 颜色指示器
+                            Text.margin({ bottom: 12 });
+                        }, Text);
+                        // 颜色指示器
+                        Text.pop();
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            // 科目名称
+                            Text.create(s.name);
+                            // 科目名称
+                            Text.fontSize(16);
+                            // 科目名称
+                            Text.fontColor(this.getInkColor());
+                            // 科目名称
+                            Text.maxLines(2);
+                            // 科目名称
+                            Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+                        }, Text);
+                        // 科目名称
+                        Text.pop();
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            If.create();
+                            // 考试日期
+                            if (s.examDate) {
+                                this.ifElseBranchUpdateFunction(0, () => {
+                                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                        Text.create(s.examDate);
+                                        Text.fontSize(12);
+                                        Text.fontColor(this.getInkDimColor());
+                                        Text.margin({ top: 4 });
+                                    }, Text);
+                                    Text.pop();
+                                });
+                            }
+                            // 删除按钮
+                            else {
+                                this.ifElseBranchUpdateFunction(1, () => {
+                                });
+                            }
+                        }, If);
+                        If.pop();
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            // 删除按钮
+                            Button.createWithLabel('Delete');
+                            // 删除按钮
+                            Button.fontSize(10);
+                            // 删除按钮
+                            Button.fontColor('#b03030');
+                            // 删除按钮
+                            Button.backgroundColor(Color.Transparent);
+                            // 删除按钮
+                            Button.margin({ top: 8 });
+                            // 删除按钮
+                            Button.onClick(() => this.deleteSubject(s.id));
+                        }, Button);
+                        // 删除按钮
+                        Button.pop();
+                        Column.pop();
+                        GridItem.pop();
+                    };
+                    observedDeepRender();
+                }
+            };
+            this.forEachUpdateFunction(elmtId, this.subjects, forEachItemGenFunction, (s: Subject) => s.id, true, false);
+        }, ForEach);
+        ForEach.pop();
+        Grid.pop();
+        // Subject Grid (响应式网格)
+        Scroll.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             If.create();
             // Add Dialog

@@ -25,7 +25,7 @@
 		"type":	"entry",
 		"description":	"Focal Study System ArkTS Edition",
 		"mainElement":	"EntryAbility",
-		"deviceTypes":	["phone", "tablet"],
+		"deviceTypes":	["phone", "tablet", "2in1"],
 		"deliveryWithInstall":	true,
 		"pages":	"$profile:main_pages",
 		"abilities":	[{
@@ -36,6 +36,8 @@
 				"startWindowIcon":	"$media:app_icon",
 				"startWindowBackground":	"$color:start_window_background",
 				"exported":	true,
+				"continuable":	true,
+				"launchType":	"singleton",
 				"skills":	[{
 						"entities":	["entity.system.home"],
 						"actions":	["action.system.home"]
@@ -46,6 +48,14 @@
 			}],
 		"requestPermissions":	[{
 				"name":	"ohos.permission.INTERNET"
+			}, {
+				"name":	"ohos.permission.DISTRIBUTED_DATASYNC",
+				"reason":	"$string:distributed_data_sync",
+				"usedScene":	{
+					"abilities":	["EntryAbility"],
+					"when":	"inuse"
+				},
+				"reasonId":	16777221
 			}],
 		"packageName":	"entry",
 		"installationFree":	false,

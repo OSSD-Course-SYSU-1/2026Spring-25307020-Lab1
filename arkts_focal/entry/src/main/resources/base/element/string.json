@@ -7,6 +7,10 @@
     {
       "name": "app_name",
       "value": "Focal Study System"
+    },
+    {
+      "name": "distributed_data_sync",
+      "value": "允许应用在多设备间同步数据，实现自由流转"
     }
   ]
 }

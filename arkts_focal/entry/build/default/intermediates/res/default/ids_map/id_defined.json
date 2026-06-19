@@ -19,5 +19,9 @@
 			"type":	"profile",
 			"name":	"main_pages",
 			"id":	"0x01000004"
+		}, {
+			"type":	"string",
+			"name":	"distributed_data_sync",
+			"id":	"0x01000005"
 		}]
 }

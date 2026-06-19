@@ -101,6 +101,8 @@ struct SubjectPage {
       if (params && params['subjectId']) {
         this.subjectId = params['subjectId']
         this.loadData()
+        // 保存接续状态
+        AppStorage.setOrCreate('continueSubjectId', this.subjectId)
       }
     } catch (e) {
       console.error('Router params error:', e)

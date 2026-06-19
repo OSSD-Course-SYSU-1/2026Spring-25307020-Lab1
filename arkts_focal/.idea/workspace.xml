@@ -2,33 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68ff7c2b-ced3-4364-a5a8-a163adef0f42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app.json5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/entryability/EntryAbility.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/AIConfig.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/AISession.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/ErrorItem.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/FlashCard.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/Note.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/PomoStats.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/Resource.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/Subject.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/models/Task.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/HomePage.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/Index.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/SimplePage.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/SubjectPage.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/TestPage.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/subject/PlannerTab.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/subject/PomodoroTab.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/subject/TasksTab.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/services/MarkdownService.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/services/SRSService.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/services/StorageService.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/utils/ColorUtil.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/utils/Constants.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/utils/DateUtil.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/utils/UIDUtil.ets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entry/src/main/resources/base/media/app_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entry/src/main/ets/utils/BreakpointSystem.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/cache/file-cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/cache/file-cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/cache/task-cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/cache/task-cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/outputs/build-logs/build.log" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/outputs/build-logs/build.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/outputs/logs/details/details.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/outputs/logs/details/details.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/report/report-202606190222027540.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo.linter" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo.linter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/EntryAbility.ets-39d93678ef0cfd906d83889c2390a31e49b4cc47cb36987d1a01fe2dd353f7a3.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/EntryAbility.ets-39d93678ef0cfd906d83889c2390a31e49b4cc47cb36987d1a01fe2dd353f7a3.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/HomePage.ets-8a4a52243ca3a7c33b271f33f5614a07df9263044f3fddfb13891aaf74d88ca2.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/HomePage.ets-8a4a52243ca3a7c33b271f33f5614a07df9263044f3fddfb13891aaf74d88ca2.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/SubjectPage.ets-85ef2f79dfcbaac10c5fd68203d0b443b496a172a0b660b774303f5de7a75a92.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/SubjectPage.ets-85ef2f79dfcbaac10c5fd68203d0b443b496a172a0b660b774303f5de7a75a92.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/plugins/plugins.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/plugins/plugins.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/entryability/EntryAbility.protoBin" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/entryability/EntryAbility.protoBin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/entryability/EntryAbility.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/entryability/EntryAbility.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/HomePage.protoBin" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/HomePage.protoBin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/HomePage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/HomePage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/SubjectPage.protoBin" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/SubjectPage.protoBin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/SubjectPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/entry/src/main/ets/pages/SubjectPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/filesInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/filesInfo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/modules.cache" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/modules.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/sourceMaps.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/cache/default/default@CompileArkTS/esmodule/debug/sourceMaps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/generated/r/default/ResourceTable.h" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/generated/r/default/ResourceTable.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/hap_metadata/default/output_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/hap_metadata/default/output_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/loader_out/default/ets/modules.abc" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/loader_out/default/ets/modules.abc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/loader_out/default/ets/sourceMaps.map" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/loader_out/default/ets/sourceMaps.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/package/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/package/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/process_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/process_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/ResourceTable.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/ResourceTable.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/ark_module.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/ark_module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/ids_map/id_defined.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/ids_map/id_defined.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/resources.index" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/res/default/resources.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/intermediates/source_map/default/sourceMaps.map" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/intermediates/source_map/default/sourceMaps.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/outputs/default/entry-default-unsigned.hap" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/outputs/default/entry-default-unsigned.hap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/outputs/default/mapping/sourceMaps.map" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/outputs/default/mapping/sourceMaps.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/build/default/outputs/default/pack.info" beforeDir="false" afterPath="$PROJECT_DIR$/entry/build/default/outputs/default/pack.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/src/main/ets/entryability/EntryAbility.ets" beforeDir="false" afterPath="$PROJECT_DIR$/entry/src/main/ets/entryability/EntryAbility.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/src/main/ets/pages/HomePage.ets" beforeDir="false" afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/HomePage.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/src/main/ets/pages/SubjectPage.ets" beforeDir="false" afterPath="$PROJECT_DIR$/entry/src/main/ets/pages/SubjectPage.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/src/main/module.json5" beforeDir="false" afterPath="$PROJECT_DIR$/entry/src/main/module.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entry/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/entry/src/main/resources/base/element/string.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

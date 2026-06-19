@@ -104,7 +104,7 @@
       "error": false
     },
     "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\entryability\\EntryAbility.ets": {
-      "mtimeMs": 1781804540913.3164,
+      "mtimeMs": 1781808341459.624,
       "children": [
         "D:\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.AbilityConstant.d.ts",
         "D:\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.UIAbility.d.ts",
@@ -114,7 +114,10 @@
         "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\services\\StorageService.ets"
       ],
       "parent": [],
-      "error": false
+      "error": true,
+      "errorCodes": [
+        28040
+      ]
     },
     "D:\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.appManager.d.ts": {
       "mtimeMs": 1774582692000,
@@ -1570,14 +1573,15 @@
       "error": false
     },
     "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\pages\\HomePage.ets": {
-      "mtimeMs": 1781804926536.7766,
+      "mtimeMs": 1781808676280.7056,
       "children": [
         "D:\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
         "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\models\\Subject.ets",
         "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\services\\StorageService.ets",
         "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\utils\\DateUtil.ets",
         "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\utils\\Constants.ets",
-        "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\utils\\UIDUtil.ets"
+        "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\utils\\UIDUtil.ets",
+        "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\utils\\BreakpointSystem.ets"
       ],
       "parent": [],
       "error": true,
@@ -1662,7 +1666,7 @@
       "error": false
     },
     "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\pages\\SubjectPage.ets": {
-      "mtimeMs": 1781807519018.0725,
+      "mtimeMs": 1781808755544.1528,
       "children": [
         "D:\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
         "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\models\\Subject.ets",
@@ -2152,6 +2156,17 @@
         "D:\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
       ],
       "error": false
+    },
+    "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\utils\\BreakpointSystem.ets": {
+      "mtimeMs": 1781808394020.9712,
+      "children": [],
+      "parent": [
+        "D:\\newcode\\arkts_focal\\entry\\src\\main\\ets\\pages\\HomePage.ets"
+      ],
+      "error": true,
+      "errorCodes": [
+        38
+      ]
     }
   }
 }
