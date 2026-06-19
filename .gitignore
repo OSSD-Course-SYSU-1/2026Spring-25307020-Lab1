@@ -1,0 +1,26 @@
+# HarmonyOS
+.idea/
+.hvigor/
+.appanalyzer/
+*.hap
+*.app
+local.properties
+
+# Build
+build/
+output/
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.iml
