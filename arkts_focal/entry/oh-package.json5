@@ -1,0 +1,9 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Focal Study System - ArkTS Edition",
+  "main": "index.ets",
+  "dependencies": {},
+  "devDependencies": {},
+  "dynamicDependencies": {}
+}

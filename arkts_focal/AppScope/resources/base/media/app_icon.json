@@ -1,0 +1,8 @@
+{
+  "media": [
+    {
+      "name": "app_icon",
+      "value": "$media:app_icon"
+    }
+  ]
+}

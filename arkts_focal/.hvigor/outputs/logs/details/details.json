@@ -1,0 +1,58 @@
+{
+  "HVIGOR_OHOS_PLUGIN": {
+    "MODULES": [
+      {
+        "MODULE_NAME": "923fe53966c6cd9343e11af776cd4b05be315ea4b200b02e4d5dfb0f929b73bf",
+        "API_TYPE": "stageMode",
+        "INCLUDE_IN_BUILD": true,
+        "IS_COMMAND_LINE_ENTRY_MODULE": false,
+        "MODULE_TYPE": "entry",
+        "INCREMENTAL_TASKS": {
+          "COMPILE_ARKTS": true
+        },
+        "IS_INCREMENTAL_MODULE": true
+      }
+    ],
+    "NATIVE_COMPILER": "Default",
+    "IS_FULL_BUILD": false,
+    "BUILD_MODE": "debug"
+  },
+  "HVIGOR": {
+    "IS_INCREMENTAL": true,
+    "IS_DAEMON": true,
+    "IS_PARALLEL": true,
+    "IS_HVIGORFILE_TYPE_CHECK": false,
+    "TASK_TIME": {
+      "923fe53966c6cd9343e11af776cd4b05be315ea4b200b02e4d5dfb0f929b73bf": {
+        "CreateModuleInfo": 738700,
+        "ConfigureCmake": 258400,
+        "PreCheckSyscap": 303000,
+        "GeneratePkgContextInfo": 2592900,
+        "ProcessIntegratedHsp": 258200,
+        "BuildNativeWithCmake": 130900,
+        "SyscapTransform": 1393300,
+        "ProcessStartupConfig": 466900,
+        "BuildNativeWithNinja": 398500,
+        "BuildJS": 2255300,
+        "CompileArkTS": 1183187100,
+        "GeneratePkgModuleJson": 2111300,
+        "ProcessCompiledResources": 386300,
+        "PackageHap": 26946900,
+        "PackingCheck": 3204200,
+        "SignHap": 1498200,
+        "CollectDebugSymbol": 505700,
+        "assembleHap": 86600
+      }
+    },
+    "APIS": [
+      "getProperty"
+    ],
+    "CONFIG_EXPERIMENT": {
+      "ENABLE_MODULE_SKIP": false,
+      "ENABLE_CPP_FUNCTION_LEVEL_INCREMENTAL": false
+    },
+    "CONFIG_PROPERTIES": {},
+    "TOTAL_TIME": 1359317600,
+    "BUILD_ID": "202606190254106590"
+  }
+}
